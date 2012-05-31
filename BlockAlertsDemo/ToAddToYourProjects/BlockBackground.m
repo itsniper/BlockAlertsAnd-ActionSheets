@@ -94,6 +94,8 @@ static BlockBackground *_sharedInstance = nil;
     
     self.transform = CGAffineTransformMakeRotation(rotateAngle);
     self.center = newCenter;
+    
+    [self setNeedsLayout];
 }
 
 - (id)init
