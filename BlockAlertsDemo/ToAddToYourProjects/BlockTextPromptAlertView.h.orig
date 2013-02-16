@@ -18,8 +18,12 @@ typedef BOOL(^TextFieldReturnCallBack)(BlockTextPromptAlertView *);
     NSInteger maxLength;
 }
 
+<<<<<<< HEAD
 @property (nonatomic) UITextField *textField;
+=======
+@property (nonatomic, retain) UITextField *textField;
 @property (nonatomic, readonly) BlockTextAlertViewConfig *config;
+>>>>>>> 5e3d481... Adding support to customize the textfield with object
 
 + (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message defaultText:(NSString*)defaultText;
 
@@ -28,6 +32,7 @@ typedef BOOL(^TextFieldReturnCallBack)(BlockTextPromptAlertView *);
 + (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message textField:(out UITextField**)textField;
 
 + (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message textField:(out UITextField**)textField block:(TextFieldReturnCallBack) block forConfig: (BlockTextAlertViewConfig *) config;
+
 
 - (id)initWithTitle:(NSString *)title message:(NSString *)message defaultText:(NSString*)defaultText block: (TextFieldReturnCallBack) block forConfig: (BlockTextAlertViewConfig *) config;
 

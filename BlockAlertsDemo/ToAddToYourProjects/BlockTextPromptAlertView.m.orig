@@ -29,7 +29,11 @@
 }
 
 + (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message defaultText:(NSString*)defaultText block:(TextFieldReturnCallBack)block {
-    return [[BlockTextPromptAlertView alloc] initWithTitle:title message:message defaultText:defaultText block:block forConfig:nil];
+<<<<<<< HEAD
+    return [[BlockTextPromptAlertView alloc] initWithTitle:title message:message defaultText:defaultText block:block];
+=======
+    return [[[BlockTextPromptAlertView alloc] initWithTitle:title message:message defaultText:defaultText block:block forConfig:nil] autorelease];
+>>>>>>> 5e3d481... Adding support to customize the textfield with object
 }
 
 + (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message textField:(out UITextField**)textField {
@@ -37,8 +41,13 @@
 }
 
 
+<<<<<<< HEAD
++ (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message textField:(out UITextField**)textField block:(TextFieldReturnCallBack) block{
+    BlockTextPromptAlertView *prompt = [[BlockTextPromptAlertView alloc] initWithTitle:title message:message defaultText:nil block:block];
+=======
 + (BlockTextPromptAlertView *)promptWithTitle:(NSString *)title message:(NSString *)message textField:(out UITextField**)textField block:(TextFieldReturnCallBack) block forConfig:(BlockTextAlertViewConfig *)config{
-    BlockTextPromptAlertView *prompt = [[BlockTextPromptAlertView alloc] initWithTitle:title message:message defaultText:nil block:block forConfig:config];
+    BlockTextPromptAlertView *prompt = [[[BlockTextPromptAlertView alloc] initWithTitle:title message:message defaultText:nil block:block forConfig:config] autorelease];
+>>>>>>> 5e3d481... Adding support to customize the textfield with object
     
     *textField = prompt.textField;
     
@@ -50,12 +59,15 @@
     self = [super initWithTitle:title message:message];
     
     if (self) {
+<<<<<<< HEAD
+        UITextField *theTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextBoxHorizontalMargin, _height, _view.bounds.size.width - kTextBoxHorizontalMargin * 2, kTextBoxHeight)]; 
+=======
         _config = config;
         
-        UITextField *theTextField = [[UITextField alloc] initWithFrame:CGRectMake(kTextBoxHorizontalMargin, _height, _view.bounds.size.width - kTextBoxHorizontalMargin * 2, kTextBoxHeight)]; 
+        UITextField *theTextField = [[[UITextField alloc] initWithFrame:CGRectMake(kTextBoxHorizontalMargin, _height, _view.bounds.size.width - kTextBoxHorizontalMargin * 2, kTextBoxHeight)] autorelease]; 
+>>>>>>> 5e3d481... Adding support to customize the textfield with object
         
         [theTextField setContentVerticalAlignment:[self.config contentVerticalAlignment]];
-        [theTextField setKeyboardType:[self.config keyboardType]];
         [theTextField setAutocapitalizationType:[self.config autocapitalizationType]];
         [theTextField setBorderStyle:[self.config borderStyle]];
         [theTextField setTextAlignment:[self.config textAlignment]];
@@ -156,11 +168,20 @@
         return YES;
 }
 
+<<<<<<< HEAD
+=======
 -(BlockTextAlertViewConfig *)config {
     if(!_config){
         _config = [BlockTextAlertViewConfig defaultConfig];
     }
     return _config;
 }
+
+- (void)dealloc
+{
+    self.callBack = nil;
+    [super dealloc];
+}
+>>>>>>> 5e3d481... Adding support to customize the textfield with object
 
 @end
