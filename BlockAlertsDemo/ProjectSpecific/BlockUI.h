@@ -25,6 +25,10 @@
 #define kActionSheetButtonShadowOffset  CGSizeMake(0, -1)
 
 #define kActionSheetBackground              @"action-sheet-panel.png"
+#define kActionSheetDefaultButtonImage      @"action-black-button.png"
+#define kActionSheetCancelButtonImage       @"action-grey-button.png"
+#define kActionSheetDestructiveButtonImage  @"action-red-button.png"
+
 #define kActionSheetBackgroundCapHeight     30
 
 

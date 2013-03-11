@@ -77,14 +77,14 @@ static UIFont *buttonFont = nil;
     return _blocks.count;
 }
 
-- (void)addButtonWithTitle:(NSString *)title color:(NSString*)color block:(void (^)())block atIndex:(NSInteger)index
+- (void)addButtonWithTitle:(NSString *)title imageName:(NSString*)imageName block:(void (^)())block atIndex:(NSInteger)index
 {
     if (index >= 0)
     {
         [_blocks insertObject:[NSArray arrayWithObjects:
                                block ? [block copy] : [NSNull null],
                                title,
-                               color,
+                               imageName,
                                nil]
                       atIndex:index];
     }
@@ -93,39 +93,39 @@ static UIFont *buttonFont = nil;
         [_blocks addObject:[NSArray arrayWithObjects:
                             block ? [block copy] : [NSNull null],
                             title,
-                            color,
+                            imageName,
                             nil]];
     }
 }
 
 - (void)setDestructiveButtonWithTitle:(NSString *)title block:(void (^)())block
 {
-    [self addButtonWithTitle:title color:@"red" block:block atIndex:-1];
+    [self addButtonWithTitle:title imageName:kActionSheetDestructiveButtonImage block:block atIndex:-1];
 }
 
 - (void)setCancelButtonWithTitle:(NSString *)title block:(void (^)())block
 {
-    [self addButtonWithTitle:title color:@"black" block:block atIndex:-1];
+    [self addButtonWithTitle:title imageName:kActionSheetCancelButtonImage block:block atIndex:-1];
 }
 
 - (void)addButtonWithTitle:(NSString *)title block:(void (^)())block 
 {
-    [self addButtonWithTitle:title color:@"gray" block:block atIndex:-1];
+    [self addButtonWithTitle:title imageName:kActionSheetDefaultButtonImage block:block atIndex:-1];
 }
 
 - (void)setDestructiveButtonWithTitle:(NSString *)title atIndex:(NSInteger)index block:(void (^)())block
 {
-    [self addButtonWithTitle:title color:@"red" block:block atIndex:index];
+    [self addButtonWithTitle:title imageName:kActionSheetDestructiveButtonImage block:block atIndex:index];
 }
 
 - (void)setCancelButtonWithTitle:(NSString *)title atIndex:(NSInteger)index block:(void (^)())block
 {
-    [self addButtonWithTitle:title color:@"black" block:block atIndex:index];
+    [self addButtonWithTitle:title imageName:kActionSheetCancelButtonImage block:block atIndex:index];
 }
 
 - (void)addButtonWithTitle:(NSString *)title atIndex:(NSInteger)index block:(void (^)())block 
 {
-    [self addButtonWithTitle:title color:@"gray" block:block atIndex:index];
+    [self addButtonWithTitle:title imageName:kActionSheetDefaultButtonImage block:block atIndex:index];
 }
 
 - (void)showInView:(UIView *)view
@@ -134,9 +134,9 @@ static UIFont *buttonFont = nil;
     for (NSArray *block in _blocks)
     {
         NSString *title = [block objectAtIndex:1];
-        NSString *color = [block objectAtIndex:2];
+        NSString *imageName = [block objectAtIndex:2];
         
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"action-%@-button.png", color]];
+        UIImage *image = [UIImage imageNamed:imageName];
         image = [image stretchableImageWithLeftCapWidth:(int)(image.size.width)>>1 topCapHeight:0];
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
